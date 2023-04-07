@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/laafje/static/css/main.6c657096.css",
-    "main.js": "/laafje/static/js/main.7ba4fb62.js",
+    "main.js": "/laafje/static/js/main.a17c5d93.js",
     "static/js/787.89f5e989.chunk.js": "/laafje/static/js/787.89f5e989.chunk.js",
     "index.html": "/laafje/index.html",
     "main.6c657096.css.map": "/laafje/static/css/main.6c657096.css.map",
-    "main.7ba4fb62.js.map": "/laafje/static/js/main.7ba4fb62.js.map",
+    "main.a17c5d93.js.map": "/laafje/static/js/main.a17c5d93.js.map",
     "787.89f5e989.chunk.js.map": "/laafje/static/js/787.89f5e989.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6c657096.css",
-    "static/js/main.7ba4fb62.js"
+    "static/js/main.a17c5d93.js"
   ]
 }
