@@ -10,7 +10,7 @@ export const App = () => {
 
   // Functions
   const addScore = () => {
-      console.log('score toevoegen..')
+      console.log('score toevoegen.....')
   }
 
   useEffect(() => {
