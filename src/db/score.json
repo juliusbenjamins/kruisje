@@ -1,0 +1,28 @@
+{
+    "scores": [
+        {
+            "id": 1,
+            "name": "Julius",
+            "tijd": 10,
+            "datum": "21-01-2000"
+        },
+        {
+            "id": 2,
+            "name": "Mark",
+            "tijd": 8.9,
+            "datum": "21-01-2000"
+        },
+        {
+            "id": 3,
+            "name": "Piet",
+            "tijd": 4,
+            "datum": "21-01-2000"
+        },
+        {
+            "id": 4,
+            "name": "Sjaak",
+            "tijd": 103,
+            "datum": "21-01-2000"
+        }
+    ]
+}
