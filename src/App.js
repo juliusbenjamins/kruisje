@@ -37,9 +37,9 @@ export const App = () => {
       <div class="App">
         <div class='App-body'>
         <div>
-          <img class='h-80 w-160 object-center' src={logo}/>      
+          <img class='scale-75 -mb-20 -mt-20 object-center' src={logo}/>      
         </div>
-        <div class='mx-10 px-10 py-5 bg-white shadow-2xl rounded-xl'>
+        <div class='mx-10 mb-8 px-10 py-5 bg-white shadow-2xl rounded-xl'>
           <div class='mb-10'>
             <div class="flex flex-col">
               <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
