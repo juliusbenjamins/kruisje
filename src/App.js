@@ -35,9 +35,10 @@ export const App = () => {
 	} else {
     return (
       <div class="App">
-        <div class='App-body min-h-screen flex flex-col m-5'>
-        <div class='mx-5'>
-          <img class='object-center h-96' src={logo} alt='logo'/>      
+        <div class='App-body flex justify-center items-center h-screen'>
+        <div class='grid place-items-center mb-10'>
+          hier komt mooi logotje mvg
+          {/* <img class='object-center h-96 w-auto' src={logo} alt='logo'/>       */}
         </div>
         <div class='mx-10 mb-8 px-10 py-5 bg-white shadow-2xl rounded-xl'>
           <div class='mb-10'>
@@ -79,12 +80,12 @@ export const App = () => {
             </button>
           </div>
 
-          <div class='m-10 relative flex flex-grow'>
-          <iframe width="420" height="236" src="https://www.youtube.com/embed/mML2fPec7xU" 
-          title="YouTube video player" frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write;
-          encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen></iframe>
+          <div class='m-10 relative flex flex-grow object-center'>
+            <iframe width="315" height="177" src="https://www.youtube.com/embed/mML2fPec7xU" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write;
+            encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen></iframe>
           </div>
 
         </div>
