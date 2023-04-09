@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import logo from './img/laaf.jpg'; // with import
+import logo from './img/laaflogo.png'; // with import
 
 // #004A00 laaf groen
 
@@ -36,13 +36,10 @@ export const App = () => {
     return (
       <div class="App">
         <div class='App-body'>
-        <div class=''>
-          {/* <img class='object-none object-center' src={logo}/> */}
-          <h1 class='mt-10 font-extrabold'>
-              Het grote taphang scoreboard?
-            </h1>         
+        <div>
+          <img class='h-80 w-160 object-center' src={logo}/>      
         </div>
-        <div class='m-10 py-10 px-5 bg-white shadow-2xl rounded-xl'>
+        <div class='px-20 py-5 bg-white shadow-2xl rounded-xl'>
           <div class='mb-10'>
             <div class="flex flex-col">
               <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
