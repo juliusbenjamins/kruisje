@@ -39,7 +39,7 @@ export const App = () => {
         <div>
           <img class='h-80 w-160 object-center' src={logo}/>      
         </div>
-        <div class='px-20 py-5 bg-white shadow-2xl rounded-xl'>
+        <div class='mx-10 px-10 py-5 bg-white shadow-2xl rounded-xl'>
           <div class='mb-10'>
             <div class="flex flex-col">
               <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -78,6 +78,15 @@ export const App = () => {
                 Score Toevoegen
             </button>
           </div>
+
+          <div class='m-10'>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/mML2fPec7xU" 
+          title="YouTube video player" frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write;
+          encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen></iframe>
+          </div>
+
         </div>
       </div>
     );
