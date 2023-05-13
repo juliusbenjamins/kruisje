@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/laafje/static/css/main.c2830dd4.css",
-    "main.js": "/laafje/static/js/main.a978fad8.js",
+    "main.css": "/laafje/static/css/main.47433ec9.css",
+    "main.js": "/laafje/static/js/main.0624c485.js",
     "static/js/787.89f5e989.chunk.js": "/laafje/static/js/787.89f5e989.chunk.js",
-    "static/media/laaflogo.png": "/laafje/static/media/laaflogo.34bfbee41643ae6a5fac.png",
+    "static/media/floor.gif": "/laafje/static/media/floor.609d0eca8b62a1cf016f.gif",
     "index.html": "/laafje/index.html",
-    "main.c2830dd4.css.map": "/laafje/static/css/main.c2830dd4.css.map",
-    "main.a978fad8.js.map": "/laafje/static/js/main.a978fad8.js.map",
+    "main.47433ec9.css.map": "/laafje/static/css/main.47433ec9.css.map",
+    "main.0624c485.js.map": "/laafje/static/js/main.0624c485.js.map",
     "787.89f5e989.chunk.js.map": "/laafje/static/js/787.89f5e989.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c2830dd4.css",
-    "static/js/main.a978fad8.js"
+    "static/css/main.47433ec9.css",
+    "static/js/main.0624c485.js"
   ]
 }
