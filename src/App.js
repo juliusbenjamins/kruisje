@@ -35,7 +35,7 @@ export const App = () => {
             <div className="flex flex-col">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
-                  <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border border-gray-800">
+                  <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border border-black">
                     {Array.from({ length: size * size }).map((_, index) => {
                         const row = Math.floor(index / size);
                         const col = index % size;
@@ -43,15 +43,23 @@ export const App = () => {
                         
                         if (curLetter == "." ){
                           return (
-                            <div key={`${row}-${col}`} className="p-6 px-8 text-2xl flex justify-center items-center border bg-black border-gray-800" key={`${row}-${col}`}>
+                            <div 
+                              key={`${row}-${col}`} 
+                              className="p-6 px-8 text-2xl flex justify-center items-center border bg-black border-black" key={`${row}-${col}`}>
                             </div>
                           )
                         } else {
                           return (
-                            <div key={`${row}-${col}`}>
-                              <div>
-                                {/* {curLetter} */}
-                                <input className="p-6 px-8 text-2xl flex justify-center items-center border border-gray-800 bg-white" size="1" maxLength="1" name="myInput" />
+                            <div 
+                              key={`${row}-${col}`}>
+                              <div 
+                                className='items-center border border-black bg-white'> 
+                                <input 
+                                  className="p-6 text-center text-2xl uppercase" 
+                                  size="1" 
+                                  maxLength="1" 
+                                  name="myInput" 
+                                />
                               </div>
                             </div>
                           );
