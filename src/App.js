@@ -15,61 +15,67 @@ export const App = () => {
 
       setPuzzle(puzzleDatabase.puzzles[0].data)
       setLoading(false);
-		}
-		fetchData()
-	}, []);
+    }
+    fetchData()
+  }, []);
 
   if (loading) {
-		return (
-			<div className="flex items-center flex-col shadow text-xs bg-white rounded-md">
-				<div className="px-6 py-8 items-center">
-					Laden....
-				</div>
-			</div>
-		)
-	} else {
     return (
-      <div className="App">
+      <div className="flex items-center flex-col shadow text-xs bg-white rounded-md">
+        <div className="px-6 py-8 items-center">
+          Laden....
+        </div>
+      </div>
+    )
+  } else {
+    return (
+      <div className="App font-mono">
         <div className='App-body flex justify-center items-center h-screen'>
+          <div className='text-4xl mb-16 font-mono'>
+            kruisje.
+          </div>
           <div className='bg-white shadow-xl rounded-xl'>
             <div className="flex flex-col">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
                   <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border border-black">
                     {Array.from({ length: size * size }).map((_, index) => {
-                        const row = Math.floor(index / size);
-                        const col = index % size;
-                        const curLetter = puzzle[row][col]
-                        
-                        if (curLetter == "." ){
-                          return (
-                            <div 
-                              key={`${row}-${col}`} 
-                              className="p-6 px-8 text-2xl flex justify-center items-center border bg-black border-black" key={`${row}-${col}`}>
+                      const row = Math.floor(index / size);
+                      const col = index % size;
+                      const curLetter = puzzle[row][col]
+
+                      if (curLetter == ".") {
+                        return (
+                          <div
+                            key={`${row}-${col}`}
+                            className="p-6 px-8 text-2xl flex justify-center items-center border bg-black border-black" key={`${row}-${col}`}>
+                          </div>
+                        )
+                      } else {
+                        return (
+                          <div
+                            key={`${row}-${col}`}>
+                            <div
+                              className='items-center border border-black bg-white'>
+                              <input
+                                className="p-4 sm:p-6 md:p-8 text-center text-3xl uppercase focus:outline-none focus:ring-0"
+                                size="1"
+                                maxLength="1"
+                                name="myInput"
+                              />
                             </div>
-                          )
-                        } else {
-                          return (
-                            <div 
-                              key={`${row}-${col}`}>
-                              <div 
-                                className='items-center border border-black bg-white'> 
-                                <input 
-                                  className="p-6 text-center text-2xl uppercase" 
-                                  size="1" 
-                                  maxLength="1" 
-                                  name="myInput" 
-                                />
-                              </div>
-                            </div>
-                          );
-                        }
-                      })}
+                          </div>
+                        );
+                      }
+                    })}
                   </div>
                 </div>
               </div>
             </div>
-            </div>
+          </div>
+          <div className='text-[0.7rem] fixed bottom-0 p-2 text-center'>
+            Gemaakt met liefde
+          </div>
         </div>
       </div>
     );
