@@ -29,9 +29,9 @@ export const App = () => {
     )
   } else {
     return (
-      <div className="App font-mono">
-        <div className='App-body flex justify-center items-center h-screen'>
-          <div className='text-4xl mb-16 font-mono'>
+      <div className="App font-mono h-screen">
+        <div className='App-body flex justify-center items-center'>
+          <div className='text-4xl my-20 font-mono'>
             kruisje.
           </div>
           <div className='bg-white shadow-xl rounded-xl'>
