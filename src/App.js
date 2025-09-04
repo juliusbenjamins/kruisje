@@ -73,9 +73,6 @@ export const App = () => {
               </div>
             </div>
           </div>
-          <div className='text-[0.7rem] fixed bottom-0 p-2 text-center'>
-            Gemaakt met liefde
-          </div>
         </div>
       </div>
     );
