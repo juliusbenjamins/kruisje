@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
-import { act } from 'react-dom/test-utils';
 
 // Random constants
 const HORIZONTAL = 0;
@@ -8,22 +7,17 @@ const VERTICAL = 1;
 const size = 5;
 
 export const App = () => {
-  /* Snel kleurtjes aanpassen */
-  const focussedCell = `bg-orange-400`
-  const focussedRowCol = `bg-orange-200`
-
   /* ---------------- Constants ---------------- */
   const [loading, setLoading] = useState(true);
   const [puzzle, setPuzzle] = useState();
   const [direction, setDirection] = useState(HORIZONTAL); // 0 = Horizontal, 1 = Vertical
-  const inputsRef = useRef([]); // om refs naar alle inputs op te slaan
   const [activeCell, setActiveCell] = useState({
     row: null,
     col: null,
   });
 
   /* ---------------- Functions ---------------- */
-  
+
   /* Sets new active cell after new focus */
   const handleFocus = (row, col) => {
     setActiveCell({ row, col });
@@ -32,9 +26,9 @@ export const App = () => {
   /* Switches direction of puzzle if clicked on current cell */
   const handleMouseDown = (row, col) => {
     if (activeCell.row === row && activeCell.col === col) {
-      setDirection(!direction)
+      setDirection((direction + 1) % 2)
+      console.log("new dir", direction)
     }
-    // console.log("??")
   }
 
   /* Checks if the new letter is a letter, otherwise leave empty*/
@@ -49,6 +43,32 @@ export const App = () => {
   const handleKeyDown = (e) => {
 
   }
+
+// { <input id={input-${row}-${col}} 
+// className={p-4 sm:p-6 md:px-8 text-center text-3xl uppercase focus:outline-none focus:ring-0 
+//   ${
+//     activeCell.row == row && activeCell.col == col 
+//     ? "bg-purple-400 " 
+//     : "bg-white " /* Sets the active cell to green */ 
+//   } 
+//   ${
+//     (direction == HORIZONTAL && activeCell.row == row && activeCell.col != col) 
+//     || direction == VERTICAL && activeCell.col == col && activeCell.row != row 
+//     ? "bg-purple-200 " 
+//     : "bg-white " /* Set active row or column to soft green */ 
+//   }} }
+
+  const getCellColor = (row, col) => {
+    if (activeCell.row === row && activeCell.col === col) { 
+      return "bg-purple-400";
+    } else if ( (direction === HORIZONTAL && activeCell.row === row && activeCell.col !== col) ||
+      (direction === VERTICAL && activeCell.col === col && activeCell.row !== row)) { 
+      return "bg-purple-200"; 
+    } else {
+      return "bg-white";
+    }
+
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -83,7 +103,8 @@ export const App = () => {
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
                   <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border border-black">
-                    {Array.from({ length: size * size }).map((_, index) => {
+                    {
+                    Array.from({ length: size * size }).map((_, index) => {
                       const row = Math.floor(index / size);
                       const col = index % size;
                       const curLetter = puzzle[row][col]
@@ -100,21 +121,11 @@ export const App = () => {
                           <div
                             key={`div-${row}-${col}`}>
                             <div
-                              className='items-center border border-black bg-white'>
+                              className='items-center border border-black'>
                               <input
                                 id={`input-${row}-${col}`}
-                                className={`p-4 sm:p-6 md:px-8 text-center text-3xl uppercase focus:outline-none focus:ring-0                                 
-                                  ${activeCell.row == row && activeCell.col == col
-                                    ? "bg-red-400 "
-                                    : "bg-white "
-                                  /* Sets the active cell to green */
-                                  }
-                                  ${(direction == HORIZONTAL && activeCell.row == row && activeCell.col != col) ||
-                                    direction == VERTICAL && activeCell.col == col && activeCell.row != row
-                                    ? "bg-red-200 "
-                                    : "bg-white "
-                                  /* Set active row or column to soft green */
-                                  }`}
+                                className={`p-4 sm:p-6 md:px-8 text-center text-3xl uppercase focus:outline-none focus:ring-0 
+                                  ${getCellColor(row, col)}`}
                                 size="1"
                                 type="text"
                                 maxLength="1"
@@ -141,3 +152,4 @@ export const App = () => {
 }
 
 export default App;
+
