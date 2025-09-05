@@ -93,9 +93,9 @@ export const App = () => {
     )
   } else {
     return (
-      <div className="App font-mono h-screen">
+      <div className="App font-mono h-screen flex-col flex justify-between">
         <div className='App-body flex justify-center items-center'>
-          <div className='text-4xl my-20 font-mono'>
+          <div className='text-4xl mb-16 mt-20 font-mono'>
             kruisje.
           </div>
           <div className='bg-white shadow-xl rounded-xl'>
@@ -113,7 +113,7 @@ export const App = () => {
                         return (
                           <div
                             key={`${row}-${col}`}
-                            className="text-2xl flex justify-center items-center border bg-black border-black">
+                            className="border bg-black border-black aspect-square">
                           </div>
                         )
                       } else {
@@ -124,7 +124,7 @@ export const App = () => {
                               className='items-center border border-black'>
                               <input
                                 id={`input-${row}-${col}`}
-                                className={`p-6 sm:p-6 md:px-8 text-center text-3xl uppercase focus:outline-none focus:ring-0 
+                                className={`p-6 sm:p-8 md:px-10 text-center text-3xl uppercase focus:outline-none focus:ring-0 aspect-square
                                   ${getCellColor(row, col)}`}
                                 size="1"
                                 type="text"
@@ -146,6 +146,9 @@ export const App = () => {
             </div>
           </div>
         </div>
+        <footer className='text-xs'>
+          door julius benjamins
+        </footer>
       </div>
     );
   }
