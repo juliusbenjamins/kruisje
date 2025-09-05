@@ -23,7 +23,7 @@ export const App = () => {
   });
 
   /* ---------------- Functions ---------------- */
-
+  
   /* Sets new active cell after new focus */
   const handleFocus = (row, col) => {
     setActiveCell({ row, col });
@@ -34,6 +34,7 @@ export const App = () => {
     if (activeCell.row === row && activeCell.col === col) {
       setDirection(!direction)
     }
+    // console.log("??")
   }
 
   /* Checks if the new letter is a letter, otherwise leave empty*/
@@ -46,7 +47,7 @@ export const App = () => {
   };
 
   const handleKeyDown = (e) => {
-    
+
   }
 
   useEffect(() => {
@@ -103,14 +104,14 @@ export const App = () => {
                               <input
                                 id={`input-${row}-${col}`}
                                 className={`p-4 sm:p-6 md:px-8 text-center text-3xl uppercase focus:outline-none focus:ring-0                                 
-                                  ${activeCell.row === row && activeCell.col === col
-                                    ? focussedCell
+                                  ${activeCell.row == row && activeCell.col == col
+                                    ? "bg-red-400 "
                                     : "bg-white "
                                   /* Sets the active cell to green */
                                   }
                                   ${(direction == HORIZONTAL && activeCell.row == row && activeCell.col != col) ||
                                     direction == VERTICAL && activeCell.col == col && activeCell.row != row
-                                    ? focussedRowCol
+                                    ? "bg-red-200 "
                                     : "bg-white "
                                   /* Set active row or column to soft green */
                                   }`}
