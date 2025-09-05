@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { act } from 'react-dom/test-utils';
 
-
+// Random constants
 const HORIZONTAL = 0;
 const VERTICAL = 1;
 const size = 5;
@@ -18,31 +18,23 @@ export const App = () => {
   });
   const inputsRef = useRef([]); // om refs naar alle inputs op te slaan
 
+/* Snel kleurtjes aanpassen */
+const focussedCell = `bg-orange-400`
+const focussedRowCol = `bg-orange-200`
+
+  /* Sets new active cell after new focus */
   const handleFocus = (row, col) => {
-    setActiveCell({ row , col });
+    setActiveCell({ row, col });
   };
 
+  /* Switches direction of puzzle if clicked on current cell */
   const handleMouseDown = (row, col) => {
     if (activeCell.row === row && activeCell.col === col) {
       setDirection(!direction)
     }
   }
 
-  const handleKeyDown = (e, row, col) => {
-    let newRow = row;
-    let newCol = col;
-
-    if (e.key === "ArrowUp") newRow = row - 1;
-    if (e.key === "ArrowDown") newRow = row + 1;
-    if (e.key === "ArrowLeft") newCol = col - 1;
-    if (e.key === "ArrowRight") newCol = col + 1;
-
-    // console.log("Next:", newRow, newCol);
-    e.preventDefault(); // cursor niet laten bewegen
-    const nextInput = inputsRef.current[`${newRow}-${newCol}`];
-    if (nextInput) nextInput.focus();
-  };
-
+  /* Checks if the new letter is a letter, otherwise leave empty*/
   const handleChange = (e) => {
     const re = /^[A-Za-z]+$/;
 
@@ -62,9 +54,13 @@ export const App = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center flex-col shadow text-xs bg-white rounded-md">
-        <div className="px-6 py-8 items-center">
-          Laden....
+      <div className="App font-mono h-screen">
+        <div className='App-body flex justify-center items-center'>
+          <div className='bg-white shadow-xl rounded-sm'>
+            <div className="p-10">
+              kruisje laden...
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -102,13 +98,13 @@ export const App = () => {
                                 id={`input-${row}-${col}`}
                                 className={`p-4 sm:p-6 md:px-8 text-center text-3xl uppercase focus:outline-none focus:ring-0                                 
                                   ${activeCell.row == row && activeCell.col == col
-                                    ? "bg-green-400 "
+                                    ? focussedCell
                                     : "bg-white "
                                   /* Sets the active cell to green */
                                   }
                                   ${(direction == HORIZONTAL && activeCell.row == row && activeCell.col != col) ||
                                     direction == VERTICAL && activeCell.col == col && activeCell.row != row
-                                    ? "bg-green-100 "
+                                    ? focussedRowCol
                                     : "bg-white "
                                   /* Set active row or column to soft green */
                                   }`}
