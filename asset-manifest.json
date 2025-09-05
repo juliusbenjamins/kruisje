@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/kruisje/static/css/main.29bc3aa9.css",
-    "main.js": "/kruisje/static/js/main.64857b8d.js",
-    "static/js/787.4f2edb19.chunk.js": "/kruisje/static/js/787.4f2edb19.chunk.js",
+    "main.css": "/kruisje/static/css/main.c69a0b6c.css",
+    "main.js": "/kruisje/static/js/main.abafb16c.js",
+    "static/js/453.6f7f0877.chunk.js": "/kruisje/static/js/453.6f7f0877.chunk.js",
     "index.html": "/kruisje/index.html",
-    "main.29bc3aa9.css.map": "/kruisje/static/css/main.29bc3aa9.css.map",
-    "main.64857b8d.js.map": "/kruisje/static/js/main.64857b8d.js.map",
-    "787.4f2edb19.chunk.js.map": "/kruisje/static/js/787.4f2edb19.chunk.js.map"
+    "main.c69a0b6c.css.map": "/kruisje/static/css/main.c69a0b6c.css.map",
+    "main.abafb16c.js.map": "/kruisje/static/js/main.abafb16c.js.map",
+    "453.6f7f0877.chunk.js.map": "/kruisje/static/js/453.6f7f0877.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.29bc3aa9.css",
-    "static/js/main.64857b8d.js"
+    "static/css/main.c69a0b6c.css",
+    "static/js/main.abafb16c.js"
   ]
 }
