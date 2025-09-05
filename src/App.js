@@ -8,19 +8,21 @@ const VERTICAL = 1;
 const size = 5;
 
 export const App = () => {
-  // Variables
+  /* Snel kleurtjes aanpassen */
+  const focussedCell = `bg-orange-400`
+  const focussedRowCol = `bg-orange-200`
+
+  /* ---------------- Constants ---------------- */
   const [loading, setLoading] = useState(true);
   const [puzzle, setPuzzle] = useState();
-  const [direction, setDirection] = useState(HORIZONTAL); //0 = horizontal, 1=vertical
+  const [direction, setDirection] = useState(HORIZONTAL); // 0 = Horizontal, 1 = Vertical
+  const inputsRef = useRef([]); // om refs naar alle inputs op te slaan
   const [activeCell, setActiveCell] = useState({
     row: null,
     col: null,
   });
-  const inputsRef = useRef([]); // om refs naar alle inputs op te slaan
 
-/* Snel kleurtjes aanpassen */
-const focussedCell = `bg-orange-400`
-const focussedRowCol = `bg-orange-200`
+  /* ---------------- Functions ---------------- */
 
   /* Sets new active cell after new focus */
   const handleFocus = (row, col) => {
@@ -42,6 +44,10 @@ const focussedRowCol = `bg-orange-200`
       e.target.value = ""
     }
   };
+
+  const handleKeyDown = (e) => {
+    
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -97,7 +103,7 @@ const focussedRowCol = `bg-orange-200`
                               <input
                                 id={`input-${row}-${col}`}
                                 className={`p-4 sm:p-6 md:px-8 text-center text-3xl uppercase focus:outline-none focus:ring-0                                 
-                                  ${activeCell.row == row && activeCell.col == col
+                                  ${activeCell.row === row && activeCell.col === col
                                     ? focussedCell
                                     : "bg-white "
                                   /* Sets the active cell to green */
@@ -114,7 +120,7 @@ const focussedRowCol = `bg-orange-200`
                                 name="inputCell"
                                 onFocus={() => handleFocus(row, col)}
                                 onMouseDown={() => handleMouseDown(row, col)}
-                                // onKeyDown={(e) => handleKeyDown(e, row, col)}
+                                onKeyDown={(e) => handleKeyDown(e, row, col)}
                                 onChange={(e) => handleChange(e)}
                               />
                             </div>
