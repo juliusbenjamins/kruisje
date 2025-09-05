@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import { act } from 'react-dom/test-utils';
 
 export const App = () => {
   // Variables
   const [loading, setLoading] = useState(true);
   const [puzzle, setPuzzle] = useState();
+  const [activeCell, setActiveCell] = useState({ row: 0, col: 0 });
+  const [direction, setDirection] = useState();
   const size = 5;
+
+  const handleLetterInput = (row, col) => {
+    setActiveCell({ row, col });
+    console.log("Current:", activeCell.row);
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -48,7 +56,7 @@ export const App = () => {
                         return (
                           <div
                             key={`${row}-${col}`}
-                            className="p-6 px-8 text-2xl flex justify-center items-center border bg-black border-black" key={`${row}-${col}`}>
+                            className="p-6 px-8 text-2xl flex justify-center items-center border bg-black border-black">
                           </div>
                         )
                       } else {
@@ -58,10 +66,17 @@ export const App = () => {
                             <div
                               className='items-center border border-black bg-white'>
                               <input
-                                className="p-4 sm:p-6 md:p-8 text-center text-3xl uppercase focus:outline-none focus:ring-0"
+                                className={`p-4 sm:p-6 md:px-8 text-center text-3xl uppercase focus:outline-none focus:ring-0 
+                                  ${activeCell.row == row && activeCell.col == col
+                                    ? "bg-green-300"
+                                    : "bg-white"
+                                  }`}
                                 size="1"
+                                type="text"
                                 maxLength="1"
                                 name="myInput"
+                                onFocus={() => handleLetterInput(row, col)}
+                                onBlur={() => console.log("Previous:", row, col)}
                               />
                             </div>
                           </div>
