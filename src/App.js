@@ -113,7 +113,7 @@ export const App = () => {
                         return (
                           <div
                             key={`${row}-${col}`}
-                            className="p-6 px-8 text-2xl flex justify-center items-center border bg-black border-black">
+                            className="text-2xl flex justify-center items-center border bg-black border-black">
                           </div>
                         )
                       } else {
@@ -124,7 +124,7 @@ export const App = () => {
                               className='items-center border border-black'>
                               <input
                                 id={`input-${row}-${col}`}
-                                className={`p-4 sm:p-6 md:px-8 text-center text-3xl uppercase focus:outline-none focus:ring-0 
+                                className={`p-6 sm:p-6 md:px-8 text-center text-3xl uppercase focus:outline-none focus:ring-0 
                                   ${getCellColor(row, col)}`}
                                 size="1"
                                 type="text"
