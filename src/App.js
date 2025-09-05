@@ -21,10 +21,9 @@ export const App = () => {
   const handleFocus = (row, col) => {
     // alleen active cel bijwerken, direction blijft zoals hij is
     setActiveCell({row, col });
-    setDirection(!direction)
   };
 
-  const handleClick = (row, col) => {
+  const handleMouseDown = (row, col) => {
     // console.log(e)
     if (activeCell.row === row && activeCell.col === col) {
       setDirection(!direction)
@@ -121,9 +120,7 @@ export const App = () => {
                                 maxLength="1"
                                 name="inputCell"
                                 onFocus={() => handleFocus(row, col)}
-                                onClick={() => handleClick(row, col)}
-                              // onBlur={() => console.log("Previous:", row, col)}
-                              //  onKeyDown={(e) => handleKeyDown(e, row, col)}
+                                onMouseDown={() => handleMouseDown(row, col)}
                               />
                             </div>
                           </div>
