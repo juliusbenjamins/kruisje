@@ -11,6 +11,7 @@ export const App = () => {
   const [loading, setLoading] = useState(true);
   const [puzzle, setPuzzle] = useState();
   const [direction, setDirection] = useState(HORIZONTAL); // 0 = Horizontal, 1 = Vertical
+  const inputs = useRef([]);
   const [activeCell, setActiveCell] = useState({
     row: null,
     col: null,
@@ -27,43 +28,45 @@ export const App = () => {
   const handleMouseDown = (row, col) => {
     if (activeCell.row === row && activeCell.col === col) {
       setDirection((direction + 1) % 2)
-      console.log("new dir", direction)
     }
   }
 
   /* Checks if the new letter is a letter, otherwise leave empty*/
-  const handleChange = (e) => {
+  const handleChange = (e, index) => {
     const re = /^[A-Za-z]+$/;
+    const value = e.target.value;
 
-    if (!re.test(e.target.value)) {
+    if (!re.test(value)) {
       e.target.value = ""
     }
-  };
+
+    // Als er een letter is ingevuld -> focus naar volgende input
+    // Lelijkste en onduidelijkste logica ooit dus even mooimaken chef
+    if (value.length === 1 && index < inputs.current.length - 1) {
+      if (direction === 0) inputs.current[(index + 1) % 25].focus();
+      if (direction === 1) {
+        if (index >= 20) {
+          inputs.current[(index + 6) % 25].focus();
+        } else {
+          inputs.current[(index + 5) % 25].focus();
+        }
+      }
+    } else if (index === inputs.current.length - 1) {
+      inputs.current[0].focus();
+      setDirection((direction + 1) % 2)
+    }
+  }
 
   const handleKeyDown = (e) => {
 
   }
 
-// { <input id={input-${row}-${col}} 
-// className={p-4 sm:p-6 md:px-8 text-center text-3xl uppercase focus:outline-none focus:ring-0 
-//   ${
-//     activeCell.row == row && activeCell.col == col 
-//     ? "bg-purple-400 " 
-//     : "bg-white " /* Sets the active cell to green */ 
-//   } 
-//   ${
-//     (direction == HORIZONTAL && activeCell.row == row && activeCell.col != col) 
-//     || direction == VERTICAL && activeCell.col == col && activeCell.row != row 
-//     ? "bg-purple-200 " 
-//     : "bg-white " /* Set active row or column to soft green */ 
-//   }} }
-
   const getCellColor = (row, col) => {
-    if (activeCell.row === row && activeCell.col === col) { 
+    if (activeCell.row === row && activeCell.col === col) {
       return "bg-purple-400";
-    } else if ( (direction === HORIZONTAL && activeCell.row === row && activeCell.col !== col) ||
-      (direction === VERTICAL && activeCell.col === col && activeCell.row !== row)) { 
-      return "bg-purple-200"; 
+    } else if ((direction === HORIZONTAL && activeCell.row === row && activeCell.col !== col) ||
+      (direction === VERTICAL && activeCell.col === col && activeCell.row !== row)) {
+      return "bg-purple-200";
     } else {
       return "bg-white";
     }
@@ -102,44 +105,48 @@ export const App = () => {
             <div className="flex flex-col">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
-                  <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border border-black">
+                  <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border border-black bg-black">
                     {
-                    Array.from({ length: size * size }).map((_, index) => {
-                      const row = Math.floor(index / size);
-                      const col = index % size;
-                      const curLetter = puzzle[row][col]
+                      Array.from({ length: size * size }).map((_, index) => {
+                        const row = Math.floor(index / size);
+                        const col = index % size;
+                        const curLetter = puzzle[row][col]
 
-                      if (curLetter == ".") {
-                        return (
-                          <div
-                            key={`${row}-${col}`}
-                            className="border bg-black border-black aspect-square">
-                          </div>
-                        )
-                      } else {
-                        return (
-                          <div
-                            key={`div-${row}-${col}`}>
+                        if (curLetter == ".") {
+                          return (
                             <div
-                              className='items-center border border-black'>
-                              <input
-                                id={`input-${row}-${col}`}
-                                className={`p-6 sm:p-8 md:px-10 text-center text-3xl uppercase focus:outline-none focus:ring-0 aspect-square
-                                  ${getCellColor(row, col)}`}
-                                size="1"
-                                type="text"
-                                maxLength="1"
-                                name="inputCell"
-                                onFocus={() => handleFocus(row, col)}
-                                onMouseDown={() => handleMouseDown(row, col)}
-                                onKeyDown={(e) => handleKeyDown(e, row, col)}
-                                onChange={(e) => handleChange(e)}
-                              />
+                              key={`${row}-${col}`}
+                              ref={(el) => (inputs.current[index] = el)}
+                              className="border bg-black border-black aspect-square overflow-hidden">
                             </div>
-                          </div>
-                        );
-                      }
-                    })}
+                          )
+                        } else {
+                          return (
+                            <div
+                              key={`div-${row}-${col}`}
+                              className='items-center overflow-hidden'
+                            >
+                              <div
+                                className='items-centeroverflow-hidden border border-black'>
+                                <input
+                                  id={`input-${row}-${col}`}
+                                  className={`p-5 sm:p-8 md:px-10 text-center text-2xl sm:text-3xl md:text-4xl uppercase focus:outline-none focus:ring-0 aspect-square
+                                  ${getCellColor(row, col)}`}
+                                  size="1"
+                                  type="text"
+                                  maxLength="1"
+                                  name="inputCell"
+                                  ref={(el) => (inputs.current[index] = el)}
+                                  onFocus={() => handleFocus(row, col)}
+                                  onMouseDown={() => handleMouseDown(row, col)}
+                                  onKeyDown={(e) => handleKeyDown(e, row, col)}
+                                  onChange={(e) => handleChange(e, index)}
+                                />
+                              </div>
+                            </div>
+                          );
+                        }
+                      })}
                   </div>
                 </div>
               </div>
