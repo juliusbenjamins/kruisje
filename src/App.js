@@ -16,43 +16,40 @@ export const App = () => {
     row: null,
     col: null,
   });
-  // const inputsRef = useRef([]); // om refs naar alle inputs op te slaan
+  const inputsRef = useRef([]); // om refs naar alle inputs op te slaan
 
   const handleFocus = (row, col) => {
-    // alleen active cel bijwerken, direction blijft zoals hij is
-    setActiveCell({row, col });
+    setActiveCell({ row , col });
   };
 
   const handleMouseDown = (row, col) => {
-    // console.log(e)
     if (activeCell.row === row && activeCell.col === col) {
       setDirection(!direction)
     }
   }
 
-  // logs new cells
-  // useEffect(() => {
-  // console.log("Nieuwe actieve cel:", activeCell);
-  // }, [activeCell]);
+  const handleKeyDown = (e, row, col) => {
+    let newRow = row;
+    let newCol = col;
 
-  // const handleKeyDown = (e, row, col) => {
-  //   let newRow = row;
-  //   let newCol = col;
+    if (e.key === "ArrowUp") newRow = row - 1;
+    if (e.key === "ArrowDown") newRow = row + 1;
+    if (e.key === "ArrowLeft") newCol = col - 1;
+    if (e.key === "ArrowRight") newCol = col + 1;
 
-  //   if (e.key === "ArrowUp") newRow = row - 1;
-  //   if (e.key === "ArrowDown") newRow = row + 1;
-  //   if (e.key === "ArrowLeft") newCol = col - 1;
-  //   if (e.key === "ArrowRight") newCol = col + 1;
+    // console.log("Next:", newRow, newCol);
+    e.preventDefault(); // cursor niet laten bewegen
+    const nextInput = inputsRef.current[`${newRow}-${newCol}`];
+    if (nextInput) nextInput.focus();
+  };
 
-  //   console.log("Next:", newRow, newCol);
-  //   setActiveCell({newRow, newCol});
+  const handleChange = (e) => {
+    const re = /^[A-Za-z]+$/;
 
-  //   // if (newRow !== row || newCol !== col) {
-  //   //   e.preventDefault(); // standaard cursor beweging voorkomen
-  //   //   const nextInput = inputsRef.current[`${newRow}-${newCol}`];
-  //   //   if (nextInput) nextInput.focus();
-  //   // }
-  // };
+    if (!re.test(e.target.value)) {
+      e.target.value = ""
+    }
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -121,6 +118,8 @@ export const App = () => {
                                 name="inputCell"
                                 onFocus={() => handleFocus(row, col)}
                                 onMouseDown={() => handleMouseDown(row, col)}
+                                // onKeyDown={(e) => handleKeyDown(e, row, col)}
+                                onChange={(e) => handleChange(e)}
                               />
                             </div>
                           </div>
