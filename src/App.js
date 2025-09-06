@@ -4,18 +4,18 @@ import './App.css';
 // Random constants
 const HORIZONTAL = 0;
 const VERTICAL = 1;
-const size = 5;
+const GRIDSIZE = 5;
 
 export const App = () => {
   /* ---------------- Constants ---------------- */
   const [loading, setLoading] = useState(true);
   const [puzzle, setPuzzle] = useState();
   const [direction, setDirection] = useState(HORIZONTAL); // 0 = Horizontal, 1 = Vertical
-  const inputs = useRef([]);
   const [activeCell, setActiveCell] = useState({
     row: null,
     col: null,
   });
+  const inputs = useRef([]);
 
   /* ---------------- Functions ---------------- */
 
@@ -63,10 +63,10 @@ export const App = () => {
 
   const getCellColor = (row, col) => {
     if (activeCell.row === row && activeCell.col === col) {
-      return "bg-purple-400";
+      return "bg-green-400";
     } else if ((direction === HORIZONTAL && activeCell.row === row && activeCell.col !== col) ||
       (direction === VERTICAL && activeCell.col === col && activeCell.row !== row)) {
-      return "bg-purple-200";
+      return "bg-green-200";
     } else {
       return "bg-white";
     }
@@ -107,9 +107,9 @@ export const App = () => {
                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
                   <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border border-black bg-black">
                     {
-                      Array.from({ length: size * size }).map((_, index) => {
-                        const row = Math.floor(index / size);
-                        const col = index % size;
+                      Array.from({ length: GRIDSIZE * GRIDSIZE }).map((_, index) => {
+                        const row = Math.floor(index / GRIDSIZE);
+                        const col = index % GRIDSIZE;
                         const curLetter = puzzle[row][col]
 
                         if (curLetter == ".") {
@@ -130,7 +130,7 @@ export const App = () => {
                                 className='items-centeroverflow-hidden border border-black'>
                                 <input
                                   id={`input-${row}-${col}`}
-                                  className={`p-5 sm:p-8 md:px-10 text-center text-2xl sm:text-3xl md:text-4xl uppercase focus:outline-none focus:ring-0 aspect-square
+                                  className={`p-5 sm:p-8 md:px-10 rounded-none text-center text-2xl sm:text-3xl md:text-4xl uppercase focus:outline-none focus:ring-0 aspect-square
                                   ${getCellColor(row, col)}`}
                                   size="1"
                                   type="text"
