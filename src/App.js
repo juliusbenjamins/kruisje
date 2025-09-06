@@ -20,7 +20,8 @@ export const App = () => {
   /* ---------------- Functions ---------------- */
 
   /* Sets new active cell after new focus */
-  const handleFocus = (row, col) => {
+  const handleFocus = (e, row, col) => {
+    e.target.select()
     setActiveCell({ row, col });
   };
 
@@ -140,7 +141,7 @@ export const App = () => {
                                   maxLength="1"
                                   name="inputCell"
                                   ref={(el) => (inputs.current[index] = el)}
-                                  onFocus={() => handleFocus(row, col)}
+                                  onFocus={(e) => handleFocus(e, row, col)}
                                   onMouseDown={() => handleMouseDown(row, col)}
                                   onKeyDown={(e) => handleKeyDown(e, row, col)}
                                   onChange={(e) => handleChange(e, index)}
