@@ -105,7 +105,8 @@ export const App = () => {
             <div className="flex flex-col">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
-                  <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border border-black bg-black">
+                  <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border 
+                                  border-black bg-black">
                     {
                       Array.from({ length: GRIDSIZE * GRIDSIZE }).map((_, index) => {
                         const row = Math.floor(index / GRIDSIZE);
@@ -130,7 +131,9 @@ export const App = () => {
                                 className='items-centeroverflow-hidden border border-black'>
                                 <input
                                   id={`input-${row}-${col}`}
-                                  className={`p-5 sm:p-8 md:px-10 rounded-none text-center text-2xl sm:text-3xl md:text-4xl uppercase focus:outline-none focus:ring-0 aspect-square
+                                  className={`p-5 sm:p-8 md:px-10 appearance-none rounded-none text-center 
+                                              text-2xl sm:text-3xl md:text-4xl uppercase 
+                                              focus:outline-none focus:ring-0 aspect-square
                                   ${getCellColor(row, col)}`}
                                   size="1"
                                   type="text"
