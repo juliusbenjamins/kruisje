@@ -108,8 +108,11 @@ export const App = () => {
     return (
       <div className="App font-mono h-screen flex-col flex justify-between">
         <div className='App-body flex justify-center items-center'>
-          <div className='text-4xl mb-16 mt-20 font-mono'>
+          <div className='text-4xl mb-5 mt-20 font-mono'>
             kruisje.
+          </div>
+          <div className='text-xl mb-10 mt-10 font-mono'>
+            "Beschrijving van woord"
           </div>
           <div className='bg-white shadow-xl rounded-xl'>
             <div className="flex flex-col">
