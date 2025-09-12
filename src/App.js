@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/24/solid'
 import './App.css';
 
 // Random constants
@@ -60,6 +61,14 @@ export const App = () => {
 
   const handleKeyDown = (e) => {
 
+  }
+
+  const handleNavigation = (e, dir) => {
+    if (dir === "left") {
+      console.log("Ennnn links")
+    } else if (dir === "right") {
+      console.log("Ennnn rechts")
+    }
   }
 
   const getCellColor = (row, col) => {
@@ -156,9 +165,21 @@ export const App = () => {
               </div>
             </div>
           </div>
+          <div className='mt-3'>
+            <button 
+              className='Navigation p-3 mr-2'
+              onClick={(e) => handleNavigation(e, "left")}>
+              <ChevronDoubleLeftIcon className="size-8 text-gray-800"/>
+            </button>
+            <button
+              className='Navigation p-3 ml-2'
+              onClick={(e) => handleNavigation(e, "right")}>
+              <ChevronDoubleRightIcon className="size-8 text-gray-800"/>
+            </button>
+          </div>
         </div>
         <footer className='text-xs'>
-          door julius benjamins
+          door julius & niels
         </footer>
       </div>
     );

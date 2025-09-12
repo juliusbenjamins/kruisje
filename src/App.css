@@ -41,6 +41,10 @@ html {
   color: #61dafb;
 }
 
+.Navigation {
+  color: black;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
