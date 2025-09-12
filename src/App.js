@@ -141,7 +141,7 @@ export const App = () => {
                                 className='items-center overflow-hidden border border-black'>
                                 <input
                                   id={`input-${row}-${col}`}
-                                  className={`p-4 sm:p-6 md:px-8 appearance-none rounded-none text-center 
+                                  className={`p-6 sm:p-7 md:px-8 appearance-none rounded-none text-center 
                                               text-2xl sm:text-3xl md:text-4xl uppercase 
                                               focus:outline-none focus:ring-0 aspect-square
                                   ${getCellColor(row, col)}`}
