@@ -14,6 +14,8 @@ export const App = () => {
   const [direction, setDirection] = useState(HORIZONTAL); // 0 = Horizontal, 1 = Vertical
   const [verticalDesc, setVerticalDesc] = useState();
   const [horizontalDesc, setHorizontalDesc] = useState();
+  const [puzzleState, setPuzzleState] = useState();
+  const [isSolved, setIsSolved] = useState(false);
   const [activeCell, setActiveCell] = useState({
     row: null,
     col: null,
@@ -35,6 +37,18 @@ export const App = () => {
     }
   }
 
+  const verifyPuzzle = () => {
+    if (puzzle.length !== puzzleState.length) return false;
+
+    for (let i = 0; i < puzzle.length; i++) {
+      for (let j = 0; j < puzzle.length; j++) {
+        if (puzzle[i][j] !== puzzleState[i][j]) return false;
+      }
+    }
+
+    return true
+  }
+
   /* Checks if the new letter is a letter, otherwise leave empty*/
   const handleChange = (e, index) => {
     const re = /^[A-Za-z]+$/;
@@ -44,20 +58,33 @@ export const App = () => {
       e.target.value = ""
     }
 
+    let newPuzzleState = puzzleState
+    newPuzzleState[activeCell.row][activeCell.col] = value
+
+    setPuzzleState(newPuzzleState)
+
+    console.log(puzzle)
+    console.log(puzzleState)
+
+    // Checkt eerst of de puzzel zo af is. Zo niet dan door.
     // Als er een letter is ingevuld -> focus naar volgende input
     // Lelijkste en onduidelijkste logica ooit dus even mooimaken chef
-    if (value.length === 1 && index < inputs.current.length - 1) {
-      if (direction === 0) inputs.current[(index + 1) % 25].focus();
-      if (direction === 1) {
-        if (index >= 20) {
-          inputs.current[(index + 6) % 25].focus();
-        } else {
-          inputs.current[(index + 5) % 25].focus();
+    if (verifyPuzzle()) {
+      setIsSolved(true)
+    } else {
+      if (value.length === 1 && index < inputs.current.length - 1) {
+        if (direction === 0) inputs.current[(index + 1) % 25].focus();
+        if (direction === 1) {
+          if (index >= 20) {
+            inputs.current[(index + 6) % 25].focus();
+          } else {
+            inputs.current[(index + 5) % 25].focus();
+          }
         }
+      } else if (index === inputs.current.length - 1) {
+        inputs.current[0].focus();
+        setDirection((direction + 1) % 2)
       }
-    } else if (index === inputs.current.length - 1) {
-      inputs.current[0].focus();
-      setDirection((direction + 1) % 2)
     }
   }
 
@@ -98,10 +125,16 @@ export const App = () => {
   useEffect(() => {
     async function fetchData() {
       var puzzleDatabase = require('./db/puzzles.json');
-      setPuzzle(puzzleDatabase.puzzles[0].data)
-      setHorizontalDesc(puzzleDatabase.puzzles[0].verticalDescriptions);
-      setVerticalDesc(puzzleDatabase.puzzles[0].horizontalDescriptions);
+      var puzzleGrid = puzzleDatabase.puzzles[0].data
+      var emptyPuzzle = [...Array(5)].map(e => Array(5).fill("."));
+
+      setPuzzle(puzzleGrid)
+      setPuzzleState(puzzleGrid)
+      setHorizontalDesc(puzzleDatabase.puzzles[0].horizontalDescriptions);
+      setVerticalDesc(puzzleDatabase.puzzles[0].verticalDescriptions);
       setLoading(false);
+      setPuzzleState(emptyPuzzle)
+
     }
     fetchData()
   }, []);
@@ -126,7 +159,7 @@ export const App = () => {
             kruisje.
           </div>
           <div className='text-xl mb-10 mt-10 font-mono'>
-            {getCurrentDesc()}
+            {!isSolved && getCurrentDesc()}
           </div>
           <div className='bg-white shadow-xl rounded-xl'>
             <div className="flex flex-col">
@@ -143,7 +176,7 @@ export const App = () => {
                         if (curLetter == ".") {
                           return (
                             <div
-                              key={`${row}-${col}`}
+                              key={`${row}${col}`}
                               ref={(el) => (inputs.current[index] = el)}
                               className="border bg-black border-black aspect-square overflow-hidden">
                             </div>
@@ -151,15 +184,15 @@ export const App = () => {
                         } else {
                           return (
                             <div
-                              key={`div-${row}-${col}`}
+                              key={`div${row}${col}`}
                               className='items-center overflow-hidden'
                             >
                               <div
                                 className='items-center overflow-hidden border border-black'>
                                 <input
-                                  id={`input-${row}-${col}`}
-                                  className={`p-6 sm:p-7 md:px-8 appearance-none rounded-none text-center 
-                                              text-2xl sm:text-3xl md:text-4xl uppercase 
+                                  id={`${row}${col}`}
+                                  className={`p-5 sm:p-6 md:px-7 appearance-none rounded-none text-center 
+                                              text-xl sm:text-2xl md:text-3xl uppercase 
                                               focus:outline-none focus:ring-0 aspect-square
                                   ${getCellColor(row, col)}`}
                                   size="1"
