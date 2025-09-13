@@ -9,6 +9,20 @@
                 ["O", "A", "W", "Z", "A"],
                 ["E", "V", "E", ".", "T"],
                 ["M", "A", "O", "R", "D"]
+            ],
+            "verticalDescriptions" : [
+                ["Verticaal1"],
+                ["Verticaal2"],
+                ["Verticaal3"],
+                ["Verticaal4"],
+                ["Verticaal5"]
+            ],
+            "horizontalDescriptions" : [
+                ["Horizontaal1"],
+                ["Horizontaal2"],
+                ["Horizontaal3"],
+                ["Horizontaal4"],
+                ["Horizontaal5"]
             ]
         }
     ]

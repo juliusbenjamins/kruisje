@@ -12,6 +12,8 @@ export const App = () => {
   const [loading, setLoading] = useState(true);
   const [puzzle, setPuzzle] = useState();
   const [direction, setDirection] = useState(HORIZONTAL); // 0 = Horizontal, 1 = Vertical
+  const [verticalDesc, setVerticalDesc] = useState();
+  const [horizontalDesc, setHorizontalDesc] = useState();
   const [activeCell, setActiveCell] = useState({
     row: null,
     col: null,
@@ -83,10 +85,22 @@ export const App = () => {
 
   };
 
+  const getCurrentDesc = () => {
+    if (direction === VERTICAL) {
+      return (verticalDesc[activeCell.col])
+    } else if (direction === HORIZONTAL) {
+      return (horizontalDesc[activeCell.row])
+    } else {
+      return ""
+    }
+  }
+
   useEffect(() => {
     async function fetchData() {
       var puzzleDatabase = require('./db/puzzles.json');
       setPuzzle(puzzleDatabase.puzzles[0].data)
+      setHorizontalDesc(puzzleDatabase.puzzles[0].verticalDescriptions);
+      setVerticalDesc(puzzleDatabase.puzzles[0].horizontalDescriptions);
       setLoading(false);
     }
     fetchData()
@@ -108,11 +122,11 @@ export const App = () => {
     return (
       <div className="App font-mono h-screen flex-col flex justify-between">
         <div className='App-body flex justify-center items-center'>
-          <div className='text-4xl mb-5 mt-20 font-mono'>
+          <div className='text-4xl mb-5 mt-10 sm:mt-15 md:mt-20 font-mono'>
             kruisje.
           </div>
           <div className='text-xl mb-10 mt-10 font-mono'>
-            "Beschrijving van woord"
+            {getCurrentDesc()}
           </div>
           <div className='bg-white shadow-xl rounded-xl'>
             <div className="flex flex-col">
@@ -168,7 +182,7 @@ export const App = () => {
               </div>
             </div>
           </div>
-          <div className='mt-3'>
+          {/* <div className='mt-3'>
             <button 
               className='Navigation p-3 mr-2'
               onClick={(e) => handleNavigation(e, "left")}>
@@ -179,7 +193,7 @@ export const App = () => {
               onClick={(e) => handleNavigation(e, "right")}>
               <ChevronDoubleRightIcon className="size-8 text-gray-800"/>
             </button>
-          </div>
+          </div> */}
         </div>
         <footer className='text-xs'>
           door julius & niels
