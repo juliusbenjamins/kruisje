@@ -42,7 +42,7 @@ export const App = () => {
 
     for (let i = 0; i < puzzle.length; i++) {
       for (let j = 0; j < puzzle.length; j++) {
-        if (puzzle[i][j] !== puzzleState[i][j]) return false;
+        if (puzzle[i][j].toUpperCase() !== puzzleState[i][j].toUpperCase()) return false;
       }
     }
 
@@ -62,9 +62,6 @@ export const App = () => {
     newPuzzleState[activeCell.row][activeCell.col] = value
 
     setPuzzleState(newPuzzleState)
-
-    console.log(puzzle)
-    console.log(puzzleState)
 
     // Checkt eerst of de puzzel zo af is. Zo niet dan door.
     // Als er een letter is ingevuld -> focus naar volgende input
@@ -155,13 +152,17 @@ export const App = () => {
     return (
       <div className="App font-mono h-screen flex-col flex justify-between">
         <div className='App-body flex justify-center items-center'>
-          <div className='text-4xl mb-5 mt-10 sm:mt-15 md:mt-20 font-mono'>
+          <div className='text-4xl mb-8 mt-10 sm:mt-15 md:mt-20 font-mono'>
             kruisje.
           </div>
-          <div className='text-xl mb-10 mt-10 font-mono'>
+          <div className='text-xl mb-8 font-mono px-5 py-2 border-2 border-gray-200 shadow'>
             {!isSolved && getCurrentDesc()}
+            {isSolved &&
+            <div>
+              Bomboclat je hebt die bitch opgelost!
+            </div>}
           </div>
-          <div className='bg-white shadow-xl rounded-xl'>
+          <div className='bg-white shadow-xl border-4 border-black'>
             <div className="flex flex-col">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
