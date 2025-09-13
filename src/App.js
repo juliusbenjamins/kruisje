@@ -2,6 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/24/solid'
 import './App.css';
 
+/**
+ * To do:
+ *  - Backspace knop
+ *  - Skip knop voor als je een letter als hebt ingevuld?
+ *  - Cookie voor checken opgelost
+ */
+
 // Random constants
 const HORIZONTAL = 0;
 const VERTICAL = 1;
@@ -70,12 +77,27 @@ export const App = () => {
       setIsSolved(true)
     } else {
       if (value.length === 1 && index < inputs.current.length - 1) {
-        if (direction === 0) inputs.current[(index + 1) % 25].focus();
+        if (direction === 0) {
+          if (inputs.current[(index + 1) % 25].id === ".") {
+            inputs.current[(index + 2) % 25].focus();
+          } else {
+            inputs.current[(index + 1) % 25].focus();
+          }
+        }
         if (direction === 1) {
           if (index >= 20) {
-            inputs.current[(index + 6) % 25].focus();
+            if (inputs.current[(index + 6) % 25].id === ".") {
+              inputs.current[(index + 11) % 25].focus();
+            } else {
+              inputs.current[(index + 6) % 25].focus();
+            }
           } else {
-            inputs.current[(index + 5) % 25].focus();
+            if (inputs.current[(index + 5) % 25].id === ".") {
+              inputs.current[(index + 10) % 25].focus();
+            } else {
+              inputs.current[(index + 5) % 25].focus();
+            }
+
           }
         }
       } else if (index === inputs.current.length - 1) {
@@ -155,7 +177,7 @@ export const App = () => {
           <div className='text-4xl mb-8 mt-10 sm:mt-15 md:mt-20 font-mono'>
             kruisje.
           </div>
-          <div className='text-xl mb-8 font-mono px-5 py-2 border-2 border-gray-200 shadow'>
+          <div className='text-xl mb-8 font-mono px-5 py-2'>
             {!isSolved && getCurrentDesc()}
             {isSolved &&
             <div>
@@ -178,6 +200,7 @@ export const App = () => {
                           return (
                             <div
                               key={`${row}${col}`}
+                              id="."
                               ref={(el) => (inputs.current[index] = el)}
                               className="border bg-black border-black aspect-square overflow-hidden">
                             </div>
