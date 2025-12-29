@@ -22,6 +22,7 @@ export const App = () => {
   const [horizontalDesc, setHorizontalDesc] = useState();
   const [puzzleState, setPuzzleState] = useState();
   const [isSolved, setIsSolved] = useState(false);
+  const [puzzleActive, setPuzzleActive] = useState(false);
   const [activeCell, setActiveCell] = useState({
     row: null,
     col: null,
@@ -161,70 +162,95 @@ export const App = () => {
     return (
       <div className="App font-mono h-screen flex-col flex justify-between">
         <div className='App-body flex justify-center items-center'>
-          <div className='text-4xl mb-8 mt-10 sm:mt-15 md:mt-20 font-mono'>
-            kruisje.
-          </div>
-          <div className='text-xl mb-8 font-mono px-5 py-2'>
-            {!isSolved && getCurrentDesc()}
-            {isSolved &&
-              <div>
-                Opgelost
-              </div>}
-          </div>
-          <div className='bg-white shadow-xl border-4 border-black'>
-            <div className="flex flex-col">
-              <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div className="inline-block min-w-full sm:px-6 lg:px-8">
-                  <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border 
-                                  border-black bg-black">
-                    {
-                      Array.from({ length: GRIDSIZE * GRIDSIZE }).map((_, index) => {
-                        const row = Math.floor(index / GRIDSIZE);
-                        const col = index % GRIDSIZE;
-                        const curLetter = puzzle[row][col]
 
-                        if (curLetter == ".") {
-                          return (
-                            <div
-                              key={`${row}${col}`}
-                              id="."
-                              ref={(el) => (inputs.current[index] = el)}
-                              className="border bg-black border-black aspect-square overflow-hidden">
-                            </div>
-                          )
-                        } else {
-                          return (
-                            <div
-                              key={`div${row}${col}`}
-                              className='items-center overflow-hidden'
-                            >
-                              <div
-                                className='items-center overflow-hidden border border-black'>
-                                <input
-                                  id={`${row}${col}`}
-                                  className={`p-5 sm:p-6 md:px-7 appearance-none rounded-none text-center 
+          {/* Title */}
+          <div className='text-4xl mb-4 mt-10 sm:mt-15 md:mt-20 font-mono'>
+            <img className="w-60" 
+                 src={require('./img/Logo.png')}/>
+          </div>
+
+          {/* Component that holds puzzle and letter description/solved message OR the start screen */}
+          {!puzzleActive &&
+            <div>
+              <div className=''>
+                <div className="inline-block min-w-full sm:px-6 lg:px-8">
+                  <button className="p-6 mt-16"
+                    onClick={(e => setPuzzleActive(true))}>
+                    Start!
+                  </button>
+                </div>
+              </div>
+            </div>}
+
+          {puzzleActive &&
+            <div>
+              {/* Shows when puzzle is solved */}
+              <div className='text-xl mb-8 font-mono px-5 py-2'>
+                {!isSolved && getCurrentDesc()}
+                {isSolved &&
+                  <div>
+                    Opgelost
+                  </div>}
+              </div>
+
+              {/* Puzzle Component */}
+              {/* <div className="bg-[url('../public/puzzleOutline.png')] bg-cover p-10 "> */}
+              <div className="border-black border">
+                <div className="flex flex-col">
+                  <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div className="inline-block min-w-full sm:px-6 lg:px-8">
+                      <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border 
+                                  border-black bg-black">
+                        {
+                          Array.from({ length: GRIDSIZE * GRIDSIZE }).map((_, index) => {
+                            const row = Math.floor(index / GRIDSIZE);
+                            const col = index % GRIDSIZE;
+                            const curLetter = puzzle[row][col]
+
+                            if (curLetter == ".") {
+                              return (
+                                <div
+                                  key={`${row}${col}`}
+                                  id="."
+                                  ref={(el) => (inputs.current[index] = el)}
+                                  className="border bg-black border-black aspect-square overflow-hidden">
+                                </div>
+                              )
+                            } else {
+                              return (
+                                <div
+                                  key={`div${row}${col}`}
+                                  className='items-center overflow-hidden'
+                                >
+                                  <div
+                                    className='items-center overflow-hidden border border-black'>
+                                    <input
+                                      id={`${row}${col}`}
+                                      className={`p-5 sm:p-6 md:px-7 appearance-none rounded-none text-center 
                                               text-xl sm:text-2xl md:text-3xl uppercase 
                                               focus:outline-none focus:ring-0 aspect-square
                                   ${getCellColor(row, col)}`}
-                                  size="1"
-                                  type="text"
-                                  maxLength="1"
-                                  name="inputCell"
-                                  ref={(el) => (inputs.current[index] = el)}
-                                  onFocus={(e) => handleFocus(e, row, col)}
-                                  onMouseDown={() => handleMouseDown(row, col)}
-                                  onChange={(e) => handleChange(e, index)}
-                                />
-                              </div>
-                            </div>
-                          );
-                        }
-                      })}
+                                      size="1"
+                                      type="text"
+                                      maxLength="1"
+                                      name="inputCell"
+                                      ref={(el) => (inputs.current[index] = el)}
+                                      onFocus={(e) => handleFocus(e, row, col)}
+                                      onMouseDown={() => handleMouseDown(row, col)}
+                                      onChange={(e) => handleChange(e, index)}
+                                    />
+                                  </div>
+                                </div>
+                              );
+                            }
+                          })}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div>}
+
         </div>
         <footer className='text-xs'>
           door julius & niels
