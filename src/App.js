@@ -166,11 +166,11 @@ export const App = () => {
     )
   } else {
     return (
-      <div className="App font-mono h-screen flex-col flex justify-between">
+      <div className="App font-mono h-screen flex flex-col flex justify-between">
         <div className='App-body flex justify-center items-center'>
 
           {/* Title */}
-          <div className='text-4xl mb-4 mt-10 sm:mt-15 md:mt-20 font-mono'>
+          <div className='text-4xl mb-8 mt-10 sm:mt-15 md:mt-20 font-mono'>
             {/* <img className="w-60" 
                  src={require('./img/Logo.png')}/> */}
                  Kruisje
@@ -179,9 +179,9 @@ export const App = () => {
           {/* Component that holds puzzle and letter description/solved message OR the start screen */}
           {!puzzleActive &&
             <div>
-              <div className=''>
-                <div className="inline-block min-w-full sm:px-6 lg:px-8 animate-bounce">
-                  <button className="p-6 mt-16"
+              <div className='flex h-96 justify-center items-center'>
+                <div className="text-center animate-bounce">
+                  <button className="p-2"
                     onClick={(e => startPuzzle())}>
                     Start!
                   </button>
@@ -227,10 +227,10 @@ export const App = () => {
                               return (
                                 <div
                                   key={`div${row}${col}`}
-                                  className='items-center overflow-hidden'
+                                  className='items-center overflow-hidden aspect-square'
                                 >
                                   <div
-                                    className='items-center overflow-hidden border border-black'>
+                                    className='items-center overflow-hidden border border-black aspect-square'>
                                     <input
                                       id={`${row}${col}`}
                                       className={`p-5 sm:p-6 md:px-7 appearance-none rounded-none text-center 
