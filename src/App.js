@@ -31,20 +31,6 @@ export const App = () => {
 
   /* ---------------- Functions ---------------- */
 
-
-
-  const verifyPuzzle = () => {
-    if (puzzle.length !== puzzleState.length) return false;
-
-    for (let i = 0; i < puzzle.length; i++) {
-      for (let j = 0; j < puzzle.length; j++) {
-        if (puzzle[i][j].toUpperCase() !== puzzleState[i][j].toUpperCase()) return false;
-      }
-    }
-
-    return true
-  }
-
   const getCurrentDesc = () => {
     if (direction === VERTICAL) {
       return (verticalDesc[activeCell.col])
@@ -99,7 +85,18 @@ export const App = () => {
               </div>}
           </div>
           <div>
-              <PuzzleComponent/>
+              <PuzzleComponent
+              size={GRIDSIZE}
+              puzzle={puzzle}
+              activeCell={activeCell}
+              direction={direction}
+              inputs={inputs}
+              puzzleState={puzzleState}
+              setActiveCell={setActiveCell}
+              setDirection={setDirection}
+              setPuzzleState={setPuzzleState}
+              setIsSolved={setIsSolved}
+              />
           </div>
         </div>
         <footer className='text-xs'>

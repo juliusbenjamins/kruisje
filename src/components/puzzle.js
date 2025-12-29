@@ -1,7 +1,8 @@
 const HORIZONTAL = 0;
 const VERTICAL = 1;
 
-export const PuzzleComponent = (size, puzzle, activeCell, direction, inputs, setActiveCell, setDirection) => {
+export const PuzzleComponent = (size, puzzle, activeCell, direction, inputs, puzzleState,
+  setActiveCell, setDirection, setPuzzleState, setIsSolved) => {
 
   /* Sets new active cell after new focus */
   const handleFocus = (e, row, col) => {
@@ -14,6 +15,18 @@ export const PuzzleComponent = (size, puzzle, activeCell, direction, inputs, set
     if (activeCell.row === row && activeCell.col === col) {
       setDirection((direction + 1) % 2)
     }
+  }
+
+    const verifyPuzzle = () => {
+    if (puzzle.length !== puzzleState.length) return false;
+
+    for (let i = 0; i < puzzle.length; i++) {
+      for (let j = 0; j < puzzle.length; j++) {
+        if (puzzle[i][j].toUpperCase() !== puzzleState[i][j].toUpperCase()) return false;
+      }
+    }
+
+    return true
   }
 
     /* Checks if the new letter is a letter, otherwise leave empty*/
