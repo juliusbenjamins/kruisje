@@ -23,6 +23,7 @@ export const App = () => {
   const [puzzleState, setPuzzleState] = useState();
   const [isSolved, setIsSolved] = useState(false);
   const [puzzleActive, setPuzzleActive] = useState(false);
+  const [fade, setFade] = useState(true);
   const [activeCell, setActiveCell] = useState({
     row: null,
     col: null,
@@ -129,6 +130,11 @@ export const App = () => {
     }
   }
 
+  const startPuzzle = () => {
+    setFade(false)
+    setPuzzleActive(true)
+  }
+
   useEffect(() => {
     async function fetchData() {
       var puzzleDatabase = require('./db/puzzles.json');
@@ -165,17 +171,18 @@ export const App = () => {
 
           {/* Title */}
           <div className='text-4xl mb-4 mt-10 sm:mt-15 md:mt-20 font-mono'>
-            <img className="w-60" 
-                 src={require('./img/Logo.png')}/>
+            {/* <img className="w-60" 
+                 src={require('./img/Logo.png')}/> */}
+                 Kruisje
           </div>
 
           {/* Component that holds puzzle and letter description/solved message OR the start screen */}
           {!puzzleActive &&
             <div>
               <div className=''>
-                <div className="inline-block min-w-full sm:px-6 lg:px-8">
+                <div className="inline-block min-w-full sm:px-6 lg:px-8 animate-bounce">
                   <button className="p-6 mt-16"
-                    onClick={(e => setPuzzleActive(true))}>
+                    onClick={(e => startPuzzle())}>
                     Start!
                   </button>
                 </div>
@@ -195,7 +202,7 @@ export const App = () => {
 
               {/* Puzzle Component */}
               {/* <div className="bg-[url('../public/puzzleOutline.png')] bg-cover p-10 "> */}
-              <div className="border-black border">
+              <div className="animate-[spin_1s]">
                 <div className="flex flex-col">
                   <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full sm:px-6 lg:px-8">
