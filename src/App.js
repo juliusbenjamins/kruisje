@@ -111,10 +111,10 @@ export const App = () => {
 
   const getCellColor = (row, col) => {
     if (activeCell.row === row && activeCell.col === col) {
-      return "bg-green-400";
+      return "bg-purple-400";
     } else if ((direction === HORIZONTAL && activeCell.row === row && activeCell.col !== col) ||
       (direction === VERTICAL && activeCell.col === col && activeCell.row !== row)) {
-      return "bg-green-200";
+      return "bg-purple-200";
     } else {
       return "bg-white";
     }
