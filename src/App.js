@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+// import { Confetti, type confettiRef } from "src/components/ui/confetti.tsx"
 import './App.css';
 
 /**
@@ -121,13 +122,20 @@ export const App = () => {
   };
 
   const getCurrentDesc = () => {
+    var curDesc
     if (direction === VERTICAL) {
-      return (verticalDesc[activeCell.col])
+      curDesc = (verticalDesc[activeCell.col])
     } else if (direction === HORIZONTAL) {
-      return (horizontalDesc[activeCell.row])
-    } else {
-      return ""
+      curDesc = (horizontalDesc[activeCell.row])
     }
+
+    console.log(curDesc)
+
+    if (curDesc == null) {
+      return "Klik op een hokje!"
+    }
+
+    return curDesc
   }
 
   const startPuzzle = () => {
@@ -170,10 +178,12 @@ export const App = () => {
         <div className='App-body flex justify-center items-center'>
 
           {/* Title */}
-          <div className='text-4xl mb-8 mt-10 sm:mt-15 md:mt-20 font-mono'>
+          <div className='text-5xl mt-10 sm:mt-15 md:mt-20 font-mono underline'
+          onClick={(e => window.location.reload())}>
             {/* <img className="w-60" 
                  src={require('./img/Logo.png')}/> */}
-                 Kruisje
+
+            kruisje.
           </div>
 
           {/* Component that holds puzzle and letter description/solved message OR the start screen */}
@@ -181,7 +191,7 @@ export const App = () => {
             <div>
               <div className='flex h-96 justify-center items-center'>
                 <div className="text-center animate-bounce">
-                  <button className="p-2"
+                  <button className="p-4 shadow-xl rounded-xl bg-black text-white"
                     onClick={(e => startPuzzle())}>
                     Start!
                   </button>
@@ -192,10 +202,14 @@ export const App = () => {
           {puzzleActive &&
             <div>
               {/* Shows when puzzle is solved */}
-              <div className='text-xl mb-8 font-mono px-5 py-2'>
-                {!isSolved && getCurrentDesc()}
+              <div className='text-xl my-16 font-mono px-5 py-4'>
+                {!isSolved && 
+                <div>
+                  {getCurrentDesc()}
+                  </div>}  
                 {isSolved &&
                   <div>
+                    
                     Opgelost
                   </div>}
               </div>
@@ -233,7 +247,7 @@ export const App = () => {
                                     className='items-center overflow-hidden border border-black aspect-square'>
                                     <input
                                       id={`${row}${col}`}
-                                      className={`p-5 sm:p-6 md:px-7 appearance-none rounded-none text-center 
+                                      className={`p-4 sm:p-5 md:px-6 appearance-none rounded-none text-center 
                                               text-xl sm:text-2xl md:text-3xl uppercase 
                                               focus:outline-none focus:ring-0 aspect-square
                                   ${getCellColor(row, col)}`}
