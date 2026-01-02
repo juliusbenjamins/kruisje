@@ -174,11 +174,11 @@ export const App = () => {
     )
   } else {
     return (
-      <div className="App font-mono h-screen flex flex-col flex justify-between">
-        <div className='App-body flex justify-center items-center'>
+      <div className="App font-mono h-screen flex justify-center">
+        <div className='App-body'>
 
           {/* Title */}
-          <div className='text-4xl mt-10 sm:mt-15 md:mt-20 font-mono underline'
+          <div className='text-5xl -mt-20 font-mono underline'
           onClick={(e => window.location.reload())}>
             {/* <img className="w-60" 
                  src={require('./img/Logo.png')}/> */}
@@ -189,9 +189,9 @@ export const App = () => {
           {/* Component that holds puzzle and letter description/solved message OR the start screen */}
           {!puzzleActive &&
             <div>
-              <div className='flex h-96 justify-center items-center'>
+              <div className='flex mt-20 justify-center items-center'>
                 <div className="text-center animate-bounce">
-                  <button className="p-4 text-xl shadow-xl rounded-xl bg-black text-white"
+                  <button className="px-6 py-3 text-lg shadow-xl rounded-xl bg-black text-white"
                     onClick={(e => startPuzzle())}>
                     Start!
                   </button>
@@ -202,7 +202,7 @@ export const App = () => {
           {puzzleActive &&
             <div>
               {/* Shows when puzzle is solved */}
-              <div className='text-lg my-16 font-mono px-5 py-4'>
+              <div className='text-lg my-8 font-mono px-5 py-4'>
                 {!isSolved && 
                 <div>
                   {getCurrentDesc()}
@@ -210,7 +210,7 @@ export const App = () => {
                 {isSolved &&
                   <div>
                     
-                    Opgelost
+                    Opgelost, goed gedaan!
                   </div>}
               </div>
 
@@ -272,11 +272,7 @@ export const App = () => {
               </div>
             </div>}
 
-        </div>
-        <footer className='text-xs'>
-          door julius & niels
-        </footer>
-      </div>
+        </div></div>
     );
   }
 }
