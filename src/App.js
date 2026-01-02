@@ -132,7 +132,7 @@ export const App = () => {
     console.log(curDesc)
 
     if (curDesc == null) {
-      return "Klik op een hokje!"
+      return "Klik op een hokje om te beginnen!"
     }
 
     return curDesc
@@ -178,7 +178,7 @@ export const App = () => {
         <div className='App-body flex justify-center items-center'>
 
           {/* Title */}
-          <div className='text-5xl mt-10 sm:mt-15 md:mt-20 font-mono underline'
+          <div className='text-4xl mt-10 sm:mt-15 md:mt-20 font-mono underline'
           onClick={(e => window.location.reload())}>
             {/* <img className="w-60" 
                  src={require('./img/Logo.png')}/> */}
@@ -191,7 +191,7 @@ export const App = () => {
             <div>
               <div className='flex h-96 justify-center items-center'>
                 <div className="text-center animate-bounce">
-                  <button className="p-4 shadow-xl rounded-xl bg-black text-white"
+                  <button className="p-4 text-xl shadow-xl rounded-xl bg-black text-white"
                     onClick={(e => startPuzzle())}>
                     Start!
                   </button>
@@ -202,7 +202,7 @@ export const App = () => {
           {puzzleActive &&
             <div>
               {/* Shows when puzzle is solved */}
-              <div className='text-xl my-16 font-mono px-5 py-4'>
+              <div className='text-lg my-16 font-mono px-5 py-4'>
                 {!isSolved && 
                 <div>
                   {getCurrentDesc()}
@@ -219,7 +219,7 @@ export const App = () => {
               <div className="animate-[spin_1s]">
                 <div className="flex flex-col">
                   <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="inline-block min-w-full sm:px-6 lg:px-8">
+                    <div className="inline-block  sm:px-6 lg:px-8">
                       <div className="overflow-hidden grid grid-cols-5 grid-rows-5 border 
                                   border-black bg-black">
                         {
