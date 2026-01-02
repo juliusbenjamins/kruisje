@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/kruisje/static/css/main.b3b26464.css",
-    "main.js": "/kruisje/static/js/main.841b670c.js",
+    "main.css": "/kruisje/static/css/main.556a7e2f.css",
+    "main.js": "/kruisje/static/js/main.2721dbd5.js",
     "static/js/453.6f7f0877.chunk.js": "/kruisje/static/js/453.6f7f0877.chunk.js",
     "static/media/puzzleOutline.png": "/kruisje/static/media/puzzleOutline.48de081b7570edb8f846.png",
     "index.html": "/kruisje/index.html",
-    "main.b3b26464.css.map": "/kruisje/static/css/main.b3b26464.css.map",
-    "main.841b670c.js.map": "/kruisje/static/js/main.841b670c.js.map",
+    "main.556a7e2f.css.map": "/kruisje/static/css/main.556a7e2f.css.map",
+    "main.2721dbd5.js.map": "/kruisje/static/js/main.2721dbd5.js.map",
     "453.6f7f0877.chunk.js.map": "/kruisje/static/js/453.6f7f0877.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b3b26464.css",
-    "static/js/main.841b670c.js"
+    "static/css/main.556a7e2f.css",
+    "static/js/main.2721dbd5.js"
   ]
 }
