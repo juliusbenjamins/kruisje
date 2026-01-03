@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 // import { Confetti, type confettiRef } from "src/components/ui/confetti.tsx"
 import './App.css';
+import Confetti from 'react-confetti'
+import { useWindowSize } from "@uidotdev/usehooks";
 
 /**
  * To do:
@@ -30,6 +32,8 @@ export const App = () => {
     col: null,
   });
   const inputs = useRef([]);
+  const size = useWindowSize();
+
 
   /* ---------------- Functions ---------------- */
 
@@ -174,13 +178,9 @@ export const App = () => {
     return (
       <div className="App font-mono h-screen flex justify-center">
         <div className='App-body'>
-
           {/* Title */}
           <div className='text-2xl sm:text-3xl md:text-4xl -mt-20 font-mono underline'
             onClick={(e => window.location.reload())}>
-            {/* <img className="w-60" 
-                 src={require('./img/Logo.png')}/> */}
-
             kruisje.
           </div>
 
@@ -207,6 +207,13 @@ export const App = () => {
                   </div>}
                 {isSolved &&
                   <div>
+                    <Confetti
+                      width={size.width}
+                      height={size.height}
+                      opacity={0.4}
+                      gravity={0.085}
+                      numberOfPieces={70}
+                    />
                     Opgelost, goed gedaan!
                   </div>}
               </div>
