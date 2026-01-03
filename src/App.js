@@ -191,7 +191,7 @@ export const App = () => {
             <div>
               <div className='flex mt-20 justify-center items-center'>
                 <div className="text-center animate-bounce">
-                  <button className="px-6 py-3 text-lg shadow-xl rounded-xl bg-black text-white"
+                  <button className="px-4 py-2 text-lg shadow-xl rounded-xl bg-black text-white"
                     onClick={(e => startPuzzle())}>
                     Start!
                   </button>
