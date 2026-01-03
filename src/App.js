@@ -129,8 +129,6 @@ export const App = () => {
       curDesc = (horizontalDesc[activeCell.row])
     }
 
-    console.log(curDesc)
-
     if (curDesc == null) {
       return "Klik op een hokje om te beginnen!"
     }
@@ -179,7 +177,7 @@ export const App = () => {
 
           {/* Title */}
           <div className='text-2xl sm:text-3xl md:text-4xl -mt-20 font-mono underline'
-          onClick={(e => window.location.reload())}>
+            onClick={(e => window.location.reload())}>
             {/* <img className="w-60" 
                  src={require('./img/Logo.png')}/> */}
 
@@ -203,13 +201,12 @@ export const App = () => {
             <div>
               {/* Shows when puzzle is solved */}
               <div className='text-sm sm:text-md md:text-lg my-8 font-mono px-5 py-4'>
-                {!isSolved && 
-                <div>
-                  {getCurrentDesc()}
-                  </div>}  
+                {!isSolved &&
+                  <div>
+                    {getCurrentDesc()}
+                  </div>}
                 {isSolved &&
                   <div>
-                    
                     Opgelost, goed gedaan!
                   </div>}
               </div>
