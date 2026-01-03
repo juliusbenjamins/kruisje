@@ -178,7 +178,7 @@ export const App = () => {
         <div className='App-body'>
 
           {/* Title */}
-          <div className='text-5xl -mt-20 font-mono underline'
+          <div className='text-2xl sm:text-3xl md:text-4xl -mt-20 font-mono underline'
           onClick={(e => window.location.reload())}>
             {/* <img className="w-60" 
                  src={require('./img/Logo.png')}/> */}
@@ -202,7 +202,7 @@ export const App = () => {
           {puzzleActive &&
             <div>
               {/* Shows when puzzle is solved */}
-              <div className='text-lg my-8 font-mono px-5 py-4'>
+              <div className='text-sm sm:text-md md:text-lg my-8 font-mono px-5 py-4'>
                 {!isSolved && 
                 <div>
                   {getCurrentDesc()}
