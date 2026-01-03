@@ -176,10 +176,10 @@ export const App = () => {
     )
   } else {
     return (
-      <div className="App font-mono h-screen flex justify-center">
+      <div className="App font-mono flex justify-center h-screen">
         <div className='App-body'>
           {/* Title */}
-          <div className='text-2xl sm:text-3xl md:text-4xl -mt-20 font-mono underline'
+          <div className='text-3xl sm:text-4xl md:text-4xl -mt-20 font-mono underline'
             onClick={(e => window.location.reload())}>
             kruisje.
           </div>
@@ -187,9 +187,9 @@ export const App = () => {
           {/* Component that holds puzzle and letter description/solved message OR the start screen */}
           {!puzzleActive &&
             <div>
-              <div className='flex mt-20 justify-center items-center'>
+              <div className='flex mt-10 justify-center items-center'>
                 <div className="text-center animate-bounce">
-                  <button className="px-4 py-2 text-lg shadow-xl rounded-xl bg-black text-white"
+                  <button className="px-4 py-2 text-sm shadow-xl rounded-xl bg-black text-white"
                     onClick={(e => startPuzzle())}>
                     Start!
                   </button>
